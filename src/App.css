@@ -1,0 +1,14 @@
+*{
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Greatings {
+  font-size: 50px;
+  color: pink;
+}
