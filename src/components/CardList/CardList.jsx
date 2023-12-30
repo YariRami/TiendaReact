@@ -1,34 +1,31 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CardProducts from "../CardProducts/CardProducts";
+import CardProducts from "../CardProducts/CardProducts"
 import "./CardList.css";
 import { Link } from "react-router-dom";
 
 const CardList = () => {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        axios.get("http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline")
-        .then((response )=> setProducts(response.data.products)
+  useEffect(() => {
+    axios("https://fakestoreapi.com/products").then((res) =>
+      setProducts(res.data)
+    );
+  }, []);
+
+  return (
+    <div className="grid">
+      {products.map((product) => {
+        return (
+          <div key={product.id}>
+            <Link to={`/detail/${product.id}`} style={{ textDecoration: "none" }}>
+              <CardProducts product={product} />
+            </Link>
+          </div>
         );
-    }, []);
-    return (
-        <div className="grid">
-          {Array.isArray(products) && products.length > 0 ? (
-            products.map((product) => {
-              return (
-                <div key={product.id}>
-                  <Link to={`detail/${product.id}`}>
-                    <CardProducts products={product} />
-                  </Link>
-                </div>
-              );
-            })
-          ) : (
-            <p>No hay productos disponibles</p>
-          )}
-        </div>
-      );
-    };
+      })}
+    </div>
+  );
+};
 
 export default CardList;

@@ -1,13 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import CardProducts from "../../components/CardProducts/CardProducts";
 
 const CategoryPage = () => {
-  const navigate = useNavigate();
-  return (
-    <div>
-      <h1>Categorias</h1>
-      <button onClick={() => navigate("/")}>Volver a Home</button>
-    </div>
-  )
-}
+  const [product, setProducts] = useState([]);
+  let { categoryId } = useParams();
 
-export default CategoryPage
+  useEffect(() => {
+    axios("https://fakestoreapi.com/products").then((res) =>
+      setProducts(res.data)
+    );
+  }, []);
+
+  const filteredCharacters = product.filter((product) => {
+    return product.category === categoryId;
+  });
+
+  return (
+    <div className="Cards-List">
+      {filteredCharacters.map((product) => {
+        return (
+          <div key={product.id}>
+            <CardProducts product={product} />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default CategoryPage;
