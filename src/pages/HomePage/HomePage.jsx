@@ -1,12 +1,12 @@
 import React from 'react'
-import ItemListContainer from '../../components/ItemListContainer/ItemListContainer'
 import CardList from "../../components/CardList/CardList"
 
 const HomePage = () => {
   return (
     <div>
-      <ItemListContainer/>
-      <CardList/>
+      <CardList categoria="serums" />
+      <CardList categoria="higiene"/>
+      <CardList categoria="mascaras" />
     </div>
   )
 }

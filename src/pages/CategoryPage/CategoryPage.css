@@ -1,14 +1,11 @@
-.grid {
+.CategoryContainer {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 40px;
+    gap: 100px;
 }
 
-.grid > div {
-    width: 100%;
-}
-
-.grid img {
+.CategoryContainer img {
     width: 100%; 
     height: auto; 
     max-width: 100%;

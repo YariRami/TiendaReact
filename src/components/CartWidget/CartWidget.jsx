@@ -1,13 +1,15 @@
-
+import { useCart } from '../CartContext/CartContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const CartWidget = () => {
-    return (
+  const { cartItems } = useCart(); // Utiliza useCart para acceder al contexto
+
+  return (
     <div id='carrito'>
-        <ShoppingCartIcon/>
-        <span>09</span>
+      <ShoppingCartIcon />
+      <span>{cartItems.length}</span>
     </div>
-    );
+  );
 }
 
 export default CartWidget;

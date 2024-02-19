@@ -1,31 +1,43 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
+import { Link, useParams } from "react-router-dom";
 import CardProducts from "../../components/CardProducts/CardProducts";
+import "./CategoryPage.css";
 
 const CategoryPage = () => {
-  const [product, setProducts] = useState([]);
-  let { categoryId } = useParams();
+  const [products, setProducts] = useState([]);
+  const { categoria } = useParams();
 
   useEffect(() => {
-    axios("https://fakestoreapi.com/products").then((res) =>
-      setProducts(res.data)
-    );
-  }, []);
+    const fetchData = async () => {
+      try {
+        const q = query(collection(db, categoria), where("categoria", "==", categoria));
+        const querySnapshot = await getDocs(q);
+        
+        const productsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-  const filteredCharacters = product.filter((product) => {
-    return product.category === categoryId;
-  });
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchData();
+  }, [categoria]);
 
   return (
-    <div className="Cards-List">
-      {filteredCharacters.map((product) => {
-        return (
-          <div key={product.id}>
+    <div className="CategoryContainer">
+      {products.map((product) => (
+        <div key={product.id}>
+          <Link to={`/detail/${categoria}/${product.id}`} style={{ textDecoration: "none" }}>
             <CardProducts product={product} />
-          </div>
-        );
-      })}
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };
