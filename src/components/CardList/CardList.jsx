@@ -14,10 +14,12 @@ const CardList = ({ categoria }) => {
       const q = query(collection(db, categoria));
       const docs = [];
       const querySnapshot = await getDocs(q);
-    
+      
       querySnapshot.forEach((doc) => {
+      
         docs.push({ ...doc.data(), id: doc.id });
       });
+      
       setProducts(docs);
     };
     fetchData();
@@ -27,9 +29,9 @@ const CardList = ({ categoria }) => {
     <div className="grid">
       {products.map((product) => (
         <div key={product.id}>
-          <Link to={`/detail/${product.id}`} style={{ textDecoration: "none" }}>
+          <Link to={`/detail/${categoria}/${product.id}`} style={{ textDecoration: "none" }}>
             <CardProducts product={product} />
-          </Link>
+        </Link>
         </div>
       ))}
     </div>

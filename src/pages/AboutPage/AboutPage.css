@@ -1,0 +1,25 @@
+
+.about-us-paragraph {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333; 
+    margin: 20px 0; 
+}
+
+
+.about-us-title {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0066cc; 
+    margin-bottom: 10px; 
+}
+
+.about-us-container {
+    background-color: palevioletred; 
+    padding: 20px;
+    margin-top: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
