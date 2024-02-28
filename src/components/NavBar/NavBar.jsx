@@ -52,6 +52,9 @@ const NavBar = () => {
             {category}
           </Link>
         ))}
+        <Link to="/cart">
+        Mi Compra
+        </Link>
         <Link className="li" to="/shop">
           <CartWidget />
         </Link>

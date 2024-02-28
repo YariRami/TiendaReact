@@ -1,5 +1,5 @@
 import React from 'react';
-import "./ContacPage.css";
+import "./ContactPage.css";
 
 const ContactPage = () => {
   const handleSubmit = (e) => {

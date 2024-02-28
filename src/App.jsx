@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
-import ContactPage from "./pages/ContactPage/ContacPage";
+import ContactPage from "./pages/ContactPage/ContactPage";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import { CartProvider } from "./components/CartContext/CartContext"; 
 
 import "./App.css";
+import Cart from "./components/Cart/Cart";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/category/:categoria" element={<CategoryPage />} />
           <Route path="/detail/:categoria/:id" element={<DetailPage />} />
           <Route path="/shop" element={<ShopPage />} />
+          <Route path="/cart" element={<Cart />} />
           </Routes>
         </CartProvider>
       </div>
